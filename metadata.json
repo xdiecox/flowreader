@@ -1,0 +1,6 @@
+{
+  "name": "Flow Reader AI",
+  "description": "Una aplicación potente para convertir texto a voz con voces personalizables, velocidad ajustable y almacenamiento de audios para escuchar después.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
