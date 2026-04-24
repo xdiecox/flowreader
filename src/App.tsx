@@ -256,38 +256,38 @@ export default function App() {
   return (
     <div className="min-h-screen bg-calm-bg text-calm-ink font-sans selection:bg-calm-ink selection:text-calm-bg">
       {/* Navigation */}
-      <nav className="border-b border-calm-ink/10 px-6 py-4 flex items-center justify-between sticky top-0 bg-calm-bg/80 backdrop-blur-md z-20">
+      <nav className="border-b border-calm-ink/10 px-4 md:px-6 py-4 flex items-center justify-between sticky top-0 bg-calm-bg/80 backdrop-blur-md z-20">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-calm-ink rounded-full flex items-center justify-center text-calm-bg shadow-sm">
+          <div className="w-8 h-8 bg-calm-ink rounded-full flex items-center justify-center text-calm-bg shadow-sm shrink-0">
             <Headset size={18} />
           </div>
-          <h1 className="font-bold tracking-tighter text-xl uppercase text-calm-ink/90">Flow Reader AI</h1>
+          <h1 className="font-bold tracking-tighter text-lg md:text-xl uppercase text-calm-ink/90 hidden xs:block">Flow Reader AI</h1>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-2 md:gap-4 font-mono">
           <button 
             onClick={() => setActiveTab('reader')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all ${
+            className={`flex items-center gap-2 px-3 md:px-4 py-2 rounded-full transition-all ${
               activeTab === 'reader' ? 'bg-calm-ink text-calm-bg shadow-md' : 'hover:bg-slate-200/50'
             }`}
             id="nav-reader"
           >
             <Volume2 size={18} />
-            <span className="text-sm font-medium uppercase tracking-wider">Lector</span>
+            <span className="text-xs md:text-sm font-medium uppercase tracking-wider">Lector</span>
           </button>
           <button 
             onClick={() => setActiveTab('library')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all ${
+            className={`flex items-center gap-2 px-3 md:px-4 py-2 rounded-full transition-all ${
               activeTab === 'library' ? 'bg-calm-ink text-calm-bg shadow-md' : 'hover:bg-slate-200/50'
             }`}
             id="nav-library"
           >
             <History size={18} />
-            <span className="text-sm font-medium uppercase tracking-wider">Biblioteca</span>
+            <span className="text-xs md:text-sm font-medium uppercase tracking-wider">Biblioteca</span>
           </button>
         </div>
       </nav>
 
-      <main className="max-w-5xl mx-auto p-6 md:p-12">
+      <main className="max-w-5xl mx-auto p-4 md:p-12">
         <AnimatePresence mode="wait">
           {activeTab === 'reader' ? (
             <motion.div 
@@ -300,11 +300,11 @@ export default function App() {
             >
               {/* Text Area */}
               <div className="lg:col-span-2 flex flex-col gap-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex gap-2 items-center">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex gap-1.5 items-center flex-wrap">
                     <button 
                       onClick={() => setViewMode('read')}
-                      className={`px-3 py-1 rounded-lg text-[10px] uppercase font-bold tracking-wider flex items-center gap-1.5 transition-all ${
+                      className={`px-2.5 md:px-3 py-1.5 md:py-1 rounded-lg text-[10px] uppercase font-bold tracking-wider flex items-center gap-1.5 transition-all ${
                         viewMode === 'read' ? 'bg-calm-ink text-calm-bg shadow-sm' : 'bg-slate-200/50 border border-slate-300/30'
                       }`}
                     >
@@ -312,7 +312,7 @@ export default function App() {
                     </button>
                     <button 
                       onClick={() => setViewMode('edit')}
-                      className={`px-3 py-1 rounded-lg text-[10px] uppercase font-bold tracking-wider flex items-center justify-center transition-all ${
+                      className={`px-2.5 md:px-3 py-1.5 md:py-1 rounded-lg text-[10px] uppercase font-bold tracking-wider flex items-center justify-center transition-all ${
                         viewMode === 'edit' ? 'bg-calm-ink text-calm-bg shadow-sm' : 'bg-slate-200/50 border border-slate-300/30'
                       }`}
                       title="Editar"
@@ -320,11 +320,11 @@ export default function App() {
                       <Edit3 size={12} />
                     </button>
                     
-                    <div className="w-[1px] h-4 bg-slate-200 mx-1" />
+                    <div className="hidden xs:block w-[1px] h-4 bg-slate-200 mx-1" />
                     
                     <button 
                       onClick={handleCopy}
-                      className={`p-1.5 rounded-lg transition-all border border-transparent shadow-sm ${
+                      className={`p-2 md:p-1.5 rounded-lg transition-all border border-transparent shadow-sm ${
                         copyStatus ? 'bg-green-100 text-green-600 border-green-200' : 'text-calm-ink/60 hover:bg-slate-200/50 hover:text-calm-ink hover:border-slate-300/30'
                       }`}
                       title="Copiar todo"
@@ -334,16 +334,16 @@ export default function App() {
                     
                     <button 
                       onClick={handleClear}
-                      className="p-1.5 rounded-lg text-calm-ink/60 hover:bg-red-50 hover:text-red-500 transition-all border border-transparent hover:border-red-100"
+                      className="p-2 md:p-1.5 rounded-lg text-calm-ink/60 hover:bg-red-50 hover:text-red-500 transition-all border border-transparent hover:border-red-100"
                       title="Borrar todo"
                     >
                       <X size={14} />
                     </button>
                   </div>
-                  <span className="font-mono text-[10px] opacity-50">{text.length} caracteres | {paragraphs.length} párrafos</span>
+                  <span className="font-mono text-[9px] md:text-[10px] opacity-50 px-1">{text.length} caracteres | {paragraphs.length} párrafos</span>
                 </div>
 
-                <div className="relative min-h-[400px]">
+                <div className="relative min-h-[300px] h-[50vh] md:h-[400px]">
                   <AnimatePresence mode="wait">
                     {viewMode === 'edit' ? (
                       <motion.textarea
@@ -354,7 +354,7 @@ export default function App() {
                         value={text}
                         onChange={(e) => setText(e.target.value)}
                         placeholder="Pega tu texto aquí para comenzar la lectura..."
-                        className="w-full h-[400px] bg-white/70 border border-slate-200 p-6 rounded-2xl focus:outline-none focus:ring-2 focus:ring-calm-ink/20 transition-all resize-none shadow-sm"
+                        className="w-full h-full bg-white/70 border border-slate-200 p-4 md:p-6 rounded-2xl focus:outline-none focus:ring-2 focus:ring-calm-ink/20 transition-all resize-none shadow-sm"
                         id="text-input"
                       />
                     ) : (
@@ -363,7 +363,7 @@ export default function App() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="w-full h-[400px] bg-white/70 border border-slate-200 p-8 rounded-2xl overflow-y-auto shadow-sm leading-relaxed text-lg"
+                        className="w-full h-full bg-white/70 border border-slate-200 p-5 md:p-8 rounded-2xl overflow-y-auto shadow-sm leading-relaxed text-base md:text-lg"
                         id="reader-display"
                       >
                         {paragraphs.length === 0 ? (
@@ -373,7 +373,7 @@ export default function App() {
                             <div 
                               key={pIdx} 
                               className={`mb-6 transition-all duration-500 ${
-                                pIdx === currentParagraphIndex ? 'opacity-100 scale-[1.01]' : 'opacity-70'
+                                pIdx === currentParagraphIndex ? 'opacity-100' : 'opacity-70'
                               }`}
                             >
                               {pIdx === currentParagraphIndex ? (
@@ -402,10 +402,10 @@ export default function App() {
                   </AnimatePresence>
                 </div>
                 
-                <div className="flex gap-4 mt-2">
+                <div className="flex gap-2 md:gap-4 mt-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-hide">
                   <button
                     onClick={handlePrevParagraph}
-                    className="aspect-square bg-white/60 border border-slate-200 text-calm-ink rounded-xl flex items-center justify-center hover:bg-white transition-all shadow-sm"
+                    className="aspect-square w-11 md:w-auto bg-white/60 border border-slate-200 text-calm-ink rounded-xl flex items-center justify-center hover:bg-white transition-all shadow-sm shrink-0"
                     title="Párrafo anterior"
                   >
                     <SkipBack fill="currentColor" size={20} />
@@ -413,18 +413,18 @@ export default function App() {
                   
                   <button
                     onClick={() => isPlaying ? handlePause() : handlePlay()}
-                    className="flex-1 bg-calm-ink text-calm-bg py-4 rounded-xl flex items-center justify-center gap-3 hover:shadow-lg active:scale-95 transition-all group"
+                    className="flex-1 bg-calm-ink text-calm-bg py-3 md:py-4 px-6 rounded-xl flex items-center justify-center gap-3 hover:shadow-lg active:scale-95 transition-all group min-w-[140px] md:min-w-[180px]"
                     id="play-button"
                   >
                     {isPlaying ? <Pause fill="currentColor" size={24} /> : <Play fill="currentColor" size={24} />}
-                    <span className="font-bold uppercase tracking-widest">
+                    <span className="font-bold uppercase tracking-widest text-xs md:text-sm">
                       {isPlaying ? 'Pausar' : isPaused ? 'Reanudar' : 'Reproducir'}
                     </span>
                   </button>
 
                   <button
                     onClick={handleNextParagraph}
-                    className="aspect-square bg-white/60 border border-slate-200 text-calm-ink rounded-xl flex items-center justify-center hover:bg-white transition-all shadow-sm"
+                    className="aspect-square w-11 md:w-auto bg-white/60 border border-slate-200 text-calm-ink rounded-xl flex items-center justify-center hover:bg-white transition-all shadow-sm shrink-0"
                     title="Siguiente párrafo"
                   >
                     <SkipForward fill="currentColor" size={20} />
@@ -432,7 +432,7 @@ export default function App() {
 
                   <button
                     onClick={handleStop}
-                    className="aspect-square bg-white/60 border border-slate-200 text-calm-ink rounded-xl flex items-center justify-center hover:bg-white transition-all shadow-sm"
+                    className="aspect-square w-11 md:w-auto bg-white/60 border border-slate-200 text-calm-ink rounded-xl flex items-center justify-center hover:bg-white transition-all shadow-sm shrink-0"
                     id="stop-button"
                     title="Detener"
                   >
@@ -440,7 +440,7 @@ export default function App() {
                   </button>
                   <button
                     onClick={handleSave}
-                    className={`aspect-square border rounded-xl flex items-center justify-center transition-all shadow-sm ${
+                    className={`aspect-square w-11 md:w-auto border rounded-xl flex items-center justify-center transition-all shadow-sm shrink-0 ${
                       saveStatus ? 'bg-green-100 border-green-200 text-green-600 animate-pulse' : 'bg-white/60 border-slate-200 text-calm-ink hover:bg-white'
                     }`}
                     id="save-button"
@@ -453,13 +453,13 @@ export default function App() {
 
               {/* Controls Column */}
               <div className="flex flex-col gap-8">
-                <section className="bg-white/40 p-6 rounded-2xl border border-slate-200/50 backdrop-blur-sm">
+                <section className="bg-white/40 p-5 md:p-6 rounded-2xl border border-slate-200/50 backdrop-blur-sm shadow-sm md:shadow-none">
                   <div className="flex items-center gap-2 mb-6">
                     <Settings2 size={16} className="text-calm-accent" />
                     <h2 className="font-mono text-xs uppercase tracking-widest font-bold">Ajustes</h2>
                   </div>
                   
-                  <div className="space-y-8">
+                  <div className="space-y-6 md:space-y-8">
                     {/* Voice Selection */}
                     <div>
                       <label className="font-mono text-[10px] uppercase opacity-50 block mb-3 font-bold">Voz sintetizada</label>

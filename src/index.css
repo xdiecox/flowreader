@@ -9,5 +9,7 @@
   --color-calm-ink: #334155;
   --color-calm-accent: #64748b;
   --color-calm-highlight: #bfdbfe;
+
+  --breakpoint-xs: 480px;
 }
 
